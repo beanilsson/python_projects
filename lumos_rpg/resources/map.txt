@@ -5,4 +5,5 @@
 EmptyPassage	EmptyPassage	StartingRoom	EmptyPassage	SpiderRoom
 BeetleRoom                      EmptyPassage
 TableKnifeRoom                  SpiderRoom
-                                GoldRoom
+SpiderRoom                      GoldRoom
+LeaveCellarRoom

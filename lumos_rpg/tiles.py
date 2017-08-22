@@ -69,3 +69,13 @@ class EnemyRoom(MapTile):
             return [actions.Attack(enemy = self.enemy)]
         else:
             return self.adjacent_moves()
+
+class LeaveCellarRoom(MapTile):
+    def intro_text(self):
+        return """
+        A door is opening in front of you, a bright light shines through it.
+        You survived the cellar!
+        """
+
+    def modify_player(self, player):
+        player.victory = True
