@@ -1,0 +1,8 @@
+                                SpiderRoom
+                StickRoom	EmptyPassage	GoldRoom
+                                EmptyPassage
+                                BeetleRoom
+EmptyPassage	EmptyPassage	StartingRoom	EmptyPassage	SpiderRoom
+BeetleRoom                      EmptyPassage
+TableKnifeRoom                  SpiderRoom
+                                GoldRoom
