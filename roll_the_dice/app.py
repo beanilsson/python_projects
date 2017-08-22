@@ -3,8 +3,10 @@ min = 1
 max = 20
 
 roll_again = "yes"
-pool_status = 0
 purse_status = 0
+
+def roll_dice(min, max):
+     return random.randint(min, max)
 
 print "How much money do you bring to the table?"
 purse_status = int(input())
@@ -21,8 +23,8 @@ while roll_again == "yes" or roll_again == "y":
         bet = int(input())
     print "Rolling the dices ..."
     print "The values are ..."
-    dice_one = random.randint(min, max)
-    dice_two = random.randint(min, max)
+    dice_one = roll_dice(min, max)
+    dice_two = roll_dice(min, max)
     if first_number == dice_one and second_number == dice_two:
       print dice_one, " ", dice_two
       print "Congratulations! You aced both numbers"
