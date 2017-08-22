@@ -1,4 +1,4 @@
-import items
+import items, world
 
 class Player():
     def _init_(self):
@@ -44,3 +44,8 @@ class Player():
             print("You killed {}!".format(enemy.name))
         else:
             print("{} HP is {}.".format(enemy.name, enemy.hp))
+
+    def do_action(self, action, **kwargs):
+        action_method = getattr(self, action.method._name_)
+        if action_method:
+            action_method(**kwargs)

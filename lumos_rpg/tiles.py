@@ -1,4 +1,4 @@
-import items, enemies
+import items, enemies, actions, world
 
 #Provide template for all the tiles
 #An abstract base class, template for the different types of tiles
@@ -13,6 +13,22 @@ class MapTile:
 
     def modify_player(self, player):
         raise NotImplementedError
+
+    def adjacent_moves(self):
+        moves = []
+        if world.tile_exists(self.x + 1, self.y):
+            moves.append(actions.MoveEast())
+        if world.tile_exists(self.x - 1, self.y):
+            moves.append(actions.MoveWest())
+        if world.tile_exists(self.x, self.y - 1):
+            moves.append(actions.MoveNorth())
+        if world.tile_exists(self.x, self.y + 1):
+            moves.append(actions.MoveSouth())
+
+    def available_actions(self):
+        moves = self.adjacent_moves()
+        moves.append(actions.ViewInventory)
+        return moves
 
 class StartingRoom(MapTile):
     def intro_text(self):
@@ -47,3 +63,9 @@ class EnemyRoom(MapTile):
         if self.enemy.is_alive():
             the_player.hp = the_player.hp - self.enemy.damage
             print("The enemy does {} damage. You have {} HP remaining.".format(self.enemy.damage, the_player.hp))
+
+    def available_actions(self):
+        if self.enemy.is_alive():
+            return [actions.Attack(enemy = self.enemy)]
+        else:
+            return self.adjacent_moves()
