@@ -11,8 +11,8 @@ class EmptyPassage(MapTile):
         pass
 
 class BeetleRoom(EnemyRoom):
-    def _init_(self, x, y):
-        super()._init_(x, y, enemies.Beetle())
+    def __init__(self, x, y):
+        super().__init__(x, y, enemies.Beetle())
 
     def intro_text(self):
         if self.enemy.is_alive():
@@ -25,8 +25,8 @@ class BeetleRoom(EnemyRoom):
             """
 
 class SpiderRoom(EnemyRoom):
-    def _init_(self, x, y):
-        super()._init_(x, y, enemies.Spider())
+    def __init__(self, x, y):
+        super().__init__(x, y, enemies.Spider())
 
     def intro_text(self):
         if self.enemy.is_alive():
@@ -39,8 +39,8 @@ class SpiderRoom(EnemyRoom):
             """
 
 class TableKnifeRoom(LootRoom):
-    def _init_(self, x, y):
-        super()._init_(x, y, items.TableKnife())
+    def __init__(self, x, y):
+        super().__init__(x, y, items.TableKnife())
 
     def intro_text(self):
         return """
@@ -49,8 +49,8 @@ class TableKnifeRoom(LootRoom):
         """
 
 class StickRoom(LootRoom):
-    def _init_(self, x, y):
-        super()._init_(x, y, items.Stick())
+    def __init__(self, x, y):
+        super().__init__(x, y, items.Stick())
 
     def intro_text(self):
         return """
@@ -59,8 +59,8 @@ class StickRoom(LootRoom):
         """
 
 class GoldRoom(LootRoom):
-    def _init_(self, x, y):
-        super()._init_(x, y, items.Gold())
+    def __init__(self, x, y):
+        super().__init__(x, y, items.Gold())
 
     def intro_text(self):
         return """

@@ -4,7 +4,7 @@ import items, enemies, actions, world
 #An abstract base class, template for the different types of tiles
 #This method shouldn't be instanced
 class MapTile:
-    def _init_(self, x, y):
+    def __init__(self, x, y):
         self.x = x
         self.y = y
 
@@ -43,9 +43,9 @@ class StartingRoom(MapTile):
 
 #Template for loot rooms
 class LootRoom(MapTile):
-    def _init_(self, x, y, item):
+    def __init__(self, x, y, item):
         self.item = item
-        super()._init_(x, y)
+        super().__init__(x, y)
 
     def add_loot(self, player):
         player.inventory.append(self.item)
@@ -55,9 +55,9 @@ class LootRoom(MapTile):
 
 #Template for enemy rooms
 class EnemyRoom(MapTile):
-    def _init_(self, x, y, enemy):
+    def __init__(self, x, y, enemy):
         self.enemy = enemy
-        super()._init_(x, y)
+        super().__init__(x, y)
 
     def modify_player(self, the_player):
         if self.enemy.is_alive():

@@ -21,5 +21,5 @@ def play():
                     break
 
 #The following lines should always be at the bottom
-if _name_ == "_main_":
+if __name__ == "__main__":
     play()

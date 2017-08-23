@@ -1,7 +1,7 @@
 import items, world
 
 class Player():
-    def _init_(self):
+    def __init__(self):
         self.inventory = [items.Gold(15), items.Stick()]
         self.hp = 100
         self.location_x, self.location_y = world.starting_position
@@ -11,7 +11,7 @@ class Player():
         return self.hp > 0
 
     def print_inventory(self):
-        for item in self.inventory
+        for item in self.inventory:
             print(item, '\n')
 
     def move (self, dx, dy):
@@ -36,8 +36,8 @@ class Player():
         max_dmg = 0
         for i in self.inventory:
             if isinstance(i, items.Weapon):
-                if i.damage > max_damage
-                best_weapon = i
+                if i.damage > max_damage:
+                    best_weapon = i
         print("You use {} against {}!".format(best_weapon.name, enemy.name))
         enemy.hp -= best_weapon.damage
         if not enemy.is_alive():

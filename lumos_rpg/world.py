@@ -1,11 +1,11 @@
 _world = {}
- starting_position = (0, 0)
+starting_position = (0, 0)
 
- #Parses a file that describes the world map into the _world object
- def load_tiles():
+#Parses a file that describes the world map into the _world object
+def load_tiles():
      with open('resources/map.txt', 'r') as f:
          rows = f.readlines()
-     x_max = len(rows[0].split('\t'))
+         x_max = len(rows[0].split('\t'))
      for y in range(len(rows)):
          cols = rows[y].split('\t')
          for x in range(x_max):
@@ -13,7 +13,7 @@ _world = {}
              if tile_name == 'StartingRoom':
                  global starting_position
                  starting_position = (x, y)
-             _world[(x, y)] = None if tile_name == '' else getattr(_import_('tiles'), tile_name)(x, y)
+                 _world[(x, y)] = None if tile_name == '' else getattr(_import_('tiles'), tile_name)(x, y)
 
- def tile_exists(x, y):
+def tile_exists(x, y):
      return _world.get((x, y))
