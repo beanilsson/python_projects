@@ -77,4 +77,4 @@ def whatNumIsThis(filePath):
     x = Counter(matchedArray)
     print x
 
-whatNumIsThis('images/test3.png')
+whatNumIsThis('images/test4.png')
