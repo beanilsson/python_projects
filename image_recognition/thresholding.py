@@ -1,7 +1,7 @@
 from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt
-import time
+from collections import Counter
 
 def createExamples():
     numberArrayExamples = open('numArEx.txt', 'a')
@@ -18,9 +18,6 @@ def createExamples():
 
             lineToWrite = str(eachNum) + '::' + exampleImageArray1 + '\n'
             numberArrayExamples.write(lineToWrite)
-
-
-createExamples()
 
 
 def threshold(imageArray):
@@ -48,33 +45,36 @@ def threshold(imageArray):
 
     return newArray
 
+def whatNumIsThis(filePath):
+    matchedArray = []
+    loadExamples = open('numArEx.txt', 'r').read()
+    loadExamples = loadExamples.split('\n')
 
+    i = Image.open(filePath)
+    iar = np.array(i)
+    iarl = iar.tolist()
 
-i1 = Image.open('images/numbers/0.1.png')
-i1Array = np.array(i1)
+    inQuestion = str(iarl)
 
-i2 = Image.open('images/numbers/y0.4.png')
-i2Array = np.array(i2)
+    for eachExample in loadExamples:
+        if len(eachExample) > 3:
+            splitEx = eachExample.split('::')
+            currentNumber = splitEx[0]
+            currentArray = splitEx[1]
 
-i3 = Image.open('images/numbers/y0.5.png')
-i3Array = np.array(i3)
+            eachPixExample = currentArray.split('],')
+            eachPixInQ = inQuestion.split('],')
 
-i4 = Image.open('images/sentdex.png')
-i4Array = np.array(i4)
+            x = 0
 
-# threshold(i2Array)
-# threshold(i3Array)
-# threshold(i4Array)
+            while x < len(eachPixExample):
+                if eachPixExample[x] == eachPixInQ[x]:
+                    matchedArray.append(int(currentNumber))
 
-# fig = plt.figure()
-# ax1 = plt.subplot2grid((8,6), (0,0), rowspan=4, colspan=3)
-# ax2 = plt.subplot2grid((8,6), (4,0), rowspan=4, colspan=3)
-# ax3 = plt.subplot2grid((8,6), (0,3), rowspan=4, colspan=3)
-# ax4 = plt.subplot2grid((8,6), (4,3), rowspan=4, colspan=3)
+                x += 1
 
-# ax1.imshow(i1Array)
-# ax2.imshow(i2Array)
-# ax3.imshow(i3Array)
-# ax4.imshow(i4Array)
+    print matchedArray
+    x = Counter(matchedArray)
+    print x
 
-# plt.show()
+whatNumIsThis('images/test7.png')
